@@ -97,7 +97,11 @@ class HajaWingmanLogic(Logic):
                 if data is not None:
                     raw[name] = data
                     read_files += 1
-        print("{} of {} file(s) read.".format(read_files, total_files))
+        # Logging
+        out = "{} of {} file(s) read.".format(read_files, total_files)
+        logger.info(out)
+        print(out)
+
         return raw
 
     def map(self, raw):
@@ -122,8 +126,8 @@ class HajaWingmanLogic(Logic):
             if not (h is None or w is None):
                 name = h.Name
                 description = build_description(icao, h, w)
-                latitude = h.Latitude
-                longitude = h.Longitude
+                latitude = w.Latitude
+                longitude = w.Longitude
                 altitude = build_altitude(w['Elev (ft)'])
                 if h.Open == "Closed" or w.Closed == "Yes":
                     status = "x"

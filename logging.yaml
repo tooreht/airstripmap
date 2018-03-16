@@ -5,14 +5,21 @@ formatters:
 handlers:
   console:
     class: logging.StreamHandler
-    level: DEBUG
+    level: NOTSET
     formatter: simple
     stream: ext://sys.stdout
+  logfile:
+    class: logging.handlers.RotatingFileHandler
+    level: DEBUG
+    formatter: simple
+    filename: airstripmap.log
+    maxBytes: 31048576  # 1024 * 1024
+    backupCount: 3
 loggers:
   cli:
-    level: NOTSET
-    handlers: [console]
+    level: DEBUG
+    handlers: [console, logfile]
     propagate: no
 root:
   level: DEBUG
-  handlers: [console]
+  handlers: [console, logfile]

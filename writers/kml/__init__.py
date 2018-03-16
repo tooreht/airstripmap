@@ -47,5 +47,7 @@ def write(airstrips, path):
 
     # Write kml file
     kml.save(path)
-    
-    print("Generated KML file with {} airstrips.".format(len(airstrips)))
+
+    out = "Generated KML file with {} airstrips.".format(len(airstrips))
+    logger.info(out)
+    print(out)
